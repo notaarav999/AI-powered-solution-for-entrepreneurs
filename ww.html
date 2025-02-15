@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>Business</title>
+</head>
+<body>
+  <div class="fluid-container">
+    <div class="blue-back">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <header>
+            <span class="logo">Business Homepage</span>
+            <span class="hiring-text">We're hiring</span>
+            <div class="get-started">
+              <button class="get-started-login button-hover">Login</button>
+              <button class="get-started-free button-hover">Get started for free</button>
+            </div>
+          </header>
+        </div>
+      </div>
+    </div>
+
+    <!-- Find Co-founder or Investor Section -->
+    <div class="row cofounder-container">
+      <div class="col-md-8 offset-md-2 text-center">
+        <h2>Find Your Co-founder or Investor</h2>
+        <p>Connect with the right people based on the latest market trends.</p>
+        <input type="text" class="cofounder-input" placeholder="Enter your business niche (e.g., AI, E-commerce)">
+        <button class="find-cofounder-button">Find Match</button>
+        <div id="cofounder-results" class="cofounder-results"></div>
+      </div>
+    </div>
+
+    <!-- Trusted Companies Section -->
+    <div class="row">
+      <div class="col-md-12 trusted-companies-container text-center">
+        <h5>Trusted by these great companies</h5>
+        <img src="{{ url_for('static', filename='img/trusted-companies.PNG') }}" alt="Google, Apple, Microsoft, Amazon, Tesla">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelector('.find-cofounder-button').addEventListener('click', function() {
+      const niche = document.querySelector('.cofounder-input').value;
+      const resultsContainer = document.getElementById('cofounder-results');
+      resultsContainer.innerHTML = `<p>Finding top investors and co-founders in <strong>${niche}</strong>...</p>`;
+      setTimeout(() => {
+        resultsContainer.innerHTML = `<p>Connect with top professionals in ${niche}: <a href='https://www.linkedin.com/search/results/people/?keywords=${niche} startup' target='_blank'>Find on LinkedIn</a></p>`;
+      }, 2000);
+    });
+  </script>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</body>
+</html>
