@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Price Checker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles1.css') }}">
+</head>
+<body>
+    <h1>Check Stock Price</h1>
+    
+    <input type="text" id="stock_symbol" placeholder="Enter Stock Symbol">
+    <button onclick="fetchStock()">Get Price</button>
+    
+    <p id="result"></p>
+
+    <script>
+        function fetchStock() {
+            const stockSymbol = document.getElementById("stock_symbol").value;
+            
+            fetch('/get_price', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `stock_symbol=${stockSymbol}`
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("result").innerText = data;
+            })
+            .catch(error => console.error("Error fetching data:", error));
+        }
+    </script>
+</body>
+</html>
